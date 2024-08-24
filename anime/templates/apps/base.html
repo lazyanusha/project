@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}My E-Commerce Site{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <!-- <link rel="stylesheet" href="{% static 'styles.css' %}"> -->
+  </head>
+  <body>
+    <header class="bg-dark text-white text-center py-3">
+      <h1>Welcome to My E-Commerce Site</h1>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">Home</a>
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Contact Us</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      {% block content %}
+      <!-- Page-specific content will go here -->
+      {% endblock %}
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3">
+      <p>&copy; 2024 My E-Commerce Site</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
